@@ -1,3 +1,23 @@
+%%% anpp_parsing.m %%%
+% DESCRIPTION
+% - Tool for parsing through Advanced Navigation Packet Protocol log files.
+% - Tool will scan for start of packets and then compare against packet IDs in a switch-case statement.
+% 
+% NOTES
+% - This tool uses some brute-force methods and therefore can be slow for long log files. For example, a 30 minute log file takes
+%   about 30 seconds to parse on my machine.
+% - You'll likely need to add a case to the switch-case statement below to grab whichever packet you're after.
+% - I find it useful to use this script to grab all packets that I'm interested in from the original log, stash them into a 
+%   variable, save that var, then use another script to experiment with the data. This saves me from having to wait 30+ seconds
+%   each time I need to generate a plot, for example. An included subtool named parse_remote_track_packets.m is a result of 
+%   using this method.
+%
+% CHANGELOG
+% 2023-08-17 11-45 c. mcguire
+%   - Initial version
+%
+% Carson McGuire / N.C. State University
+
 clear;clc;
 fid = fopen('ANPP_LOG_000754_2020_01_01_00_00_37.anpp');
 %fid = fopen('GNSS_ANPP_LOG_000755_2020_01_01_00_00_46.anpp');
