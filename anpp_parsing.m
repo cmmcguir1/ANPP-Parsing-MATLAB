@@ -88,6 +88,7 @@ while q < length(dataStream) - 4
                     remotePosCorrectedX, remotePosCorrectedY, remotePosCorrectedZ];
 
                 remoteTrackPackets(end+1,:) = payload';
+
             otherwise
                 % ignore other packets
         end
@@ -99,6 +100,8 @@ while q < length(dataStream) - 4
     % return to for-loop to continue searching for start-of-packet bytes
 end
 
+disp('Found packets with the following IDs:')
+disp(unique(packetIDlist))
 %% functions
 function crc = crc16_ccitt(data)
     % source: https://www.mathworks.com/matlabcentral/fileexchange/47682-crc_16_ccitt-m

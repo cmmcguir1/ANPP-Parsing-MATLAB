@@ -5,14 +5,17 @@ XYZdata(:,1) = XYZdata(:,1) - XYZdata(1,1); % adjust time to be experiment runti
 
 figure(1)
 clf
+sgtitle('CSI USBL Testing - Aug 2023')
 subplot(2,1,1)
 plot(XYZdata(:,1), XYZdata(:,5), '.--');
 hold on
 plot(XYZdata(:,1), XYZdata(:,6), '.--');
+plot(XYZdata(:,1), XYZdata(:,7), '.--');
 xlabel('Time (s)')
 ylabel('Position (m)')
-legend('X position', 'Y position')
-title('Remote USBL X,Y position')
+legend('X position', 'Y position', 'Z position (depth)', 'location', 'northwest')
+title('Remote USBL X,Y,Z position (in local USBL frame)')
+grid on
 
 load filterStatusHistory_2023-08-17-10-45.mat % [time, filterStatus]
 % bit 17 records if fixed position is active
@@ -25,11 +28,14 @@ plot(XYZdata(:,1), sqrt(XYZdata(:,5).^2 + XYZdata(:,6).^2), '.--');
 xlabel('Time (s)')
 ylabel('Vessel range (m)')
 title('Approx. range between vessels (based on X,Y data)')
+grid on
+fig = gcf;
+fig.Position = [1000 661 952 677];
 
-figure(2)
-clf
-plot(XYZdata(:,1) - XYZdata(1,1), XYZdata(:,7), '.--');
-title('Corrected depth')
+% figure(2)
+% clf
+% plot(XYZdata(:,1) - XYZdata(1,1), XYZdata(:,7), '.--');
+% title('Corrected depth')
 
 animateXY = false;
 
